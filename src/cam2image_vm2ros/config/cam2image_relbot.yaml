@@ -1,0 +1,6 @@
+/cam2image:
+  ros__parameters:
+    width: 320
+    height: 240
+    show_camera: true
+
