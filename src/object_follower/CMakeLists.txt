@@ -12,7 +12,9 @@ ament_target_dependencies(object_follower
   relbot_msgs 
   geometry_msgs
 )
-
+install(DIRECTORY launch
+  DESTINATION share/${PROJECT_NAME}/
+)
 install(TARGETS object_follower
   DESTINATION lib/${PROJECT_NAME}
 )
