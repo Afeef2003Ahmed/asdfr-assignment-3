@@ -8,7 +8,7 @@ public:
         threshold_ = this->declare_parameter<double>("color_threshold", 230.0);
         
         sub_ = this->create_subscription<sensor_msgs::msg::Image>(
-            "/image", 10, [this](const sensor_msgs::msg::Image::SharedPtr msg) {
+            "/moving_camera_output", 10, [this](const sensor_msgs::msg::Image::SharedPtr msg) {
                 process(msg);
             });
         pub_ = this->create_publisher<geometry_msgs::msg::Point>("/object_position", 10);

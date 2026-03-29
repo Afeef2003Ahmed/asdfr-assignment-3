@@ -5,22 +5,7 @@ from launch.actions import ExecuteProcess
 def generate_launch_description():
     return LaunchDescription([
         
-        Node(
-            package='cam2image_vm2ros',
-            executable='cam2image',
-            name='cam2image',
-            parameters=[{
-                'width': 300,
-                'height': 200,
-                'socket_ip': '172.24.0.1',  # Change to your host IP
-                'socket_port': 9999,
-                'remote_mode': True,
-                'show_camera': True,
-                'history': 'keep_last',
-                'depth': 10,
-                'rotate': False
-            }]
-        ),
+        
         
         
         Node(
@@ -35,10 +20,10 @@ def generate_launch_description():
             executable='closed_loop_follower',
             name='closed_loop_follower',
             parameters=[{
-                'tau': 1.0,
+                'tau_x': 1.0,
                 'max_speed': 2.0,
                 'pixel_to_meter': 0.002,
-                'img_center': 150.0
+                'tau_theta': 0.8
             }]
         ),
         
