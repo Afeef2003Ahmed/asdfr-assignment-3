@@ -4,13 +4,13 @@
 #include <pthread.h>
 #include <fstream>
 
-#include "Template.hpp"
+#include "Template20sim.hpp"
 
 volatile bool exitBool = false;
 
 static void *XenoThread(void *arg)
 {
-    Template example_rt(1000,1,1);
+    Template20sim example_rt(1,1);
     evl_printf("starting the loop!!!\n");
     example_rt.loop();
     return NULL;

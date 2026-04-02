@@ -1,10 +1,11 @@
-#ifndef TEMPLATE_HPP
-#define TEMPLATE_HPP
+#ifndef TEMPLATE20SIM_HPP
+#define TEMPLATE20SIM_HPP
 
-#include "XenoFrtRosIco.hpp"
+#include "XenoFrt20Sim.hpp"
+#include "LoopController.h"
 
 #pragma pack (1)    //https://carlosvin.github.io/langs/en/posts/cpp-pragma-pack/#_performance_test
-struct LoggedVariable
+struct ThisIsAStruct
 {
     int this_is_a_int = 0;
     double this_is_a_double = 100.0;
@@ -15,15 +16,18 @@ struct LoggedVariable
 
 #pragma pack(0)
 
-class Template : public XenoFrtRosIco
+class Template20Sim : public XenoFrt20Sim
 {
 public:
-    Template(uint cycle_time_freq, uint write_decimator_freq, uint monitor_freq);
-    ~Template();
+    Template20Sim(uint write_decimator_freq, uint monitor_freq);
+    ~Template20Sim();
 private:
     XenoFileHandler file;
-    struct LoggedVariable data_to_be_logged;
+    struct ThisIsAStruct data_to_be_logged;
+    LoopController controller;
 
+    double u[2];
+    double y[2];
 protected:
     //Functions
     int initialising() override;
@@ -39,4 +43,4 @@ protected:
     int current_error = 0;
 };
 
-#endif // TEMPLATE_HPP
+#endif // TEMPLATE20SIM_HPP
