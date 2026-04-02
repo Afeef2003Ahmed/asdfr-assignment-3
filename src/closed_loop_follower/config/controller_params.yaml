@@ -1,0 +1,31 @@
+# config/controller_params.yaml
+# Parameters for Assignment 1.2.3 nodes.
+# Load with: ros2 run <pkg> <node> --ros-args --params-file config/controller_params.yaml
+
+position_node:
+  ros__parameters:
+    # Brightness threshold [0–255]. Pixels above this are considered part of
+    # the bright object. Increase if background noise triggers false positives;
+    # decrease if the object is missed.
+    color_threshold: 230.0
+
+closed_loop_controller:
+  ros__parameters:
+    # First-order time constant (seconds).  Smaller → faster but more
+    # oscillatory response.  Good starting value: 1.0 s.
+    tau: 1.0
+
+    # Control loop period (seconds).  Must match the timer_period parameter
+    # and be shorter than the camera frame period (1/image_stream_FPS).
+    dt: 0.05  # 20 Hz
+
+    # Image dimensions of /output/moving_camera (pixels).
+    # Default RELbot Simulator output is 0.5 × webcam height, keeping aspect.
+    # Check the actual size from: ros2 topic echo /output/moving_camera | grep width
+    image_width:  120.0
+    image_height: 120.0
+
+    # Velocity limits sent to relbot_adapter (safety clamp in this node;
+    # the adapter also clamps independently).
+    max_linear_vel:  0.2   # m/s
+    max_angular_vel: 1.0   # rad/s
